@@ -3,6 +3,8 @@ package main
 import (
 	"fmt"
 	"os"
+
+	"github.com/dnpotter001/ig-image-upload/ig"
 )
 
 func main() {
@@ -15,12 +17,21 @@ func main() {
 	var googleRefreshToken string = os.Getenv("GOOGLE_REFRESH_TOKEN")
 	var publicDomain string = os.Getenv("PUBLIC_DOMAIN")
 
+	checkAllEnvs(igAccessToken, igAppSecret, googleClientId, googleClientSecret, googleRefreshToken, publicDomain)
+	fmt.Println("All envs variables loaded")
+
+	ig.Hello()
+}
+
+func checkAllEnvs(igAccessToken, igAppSecret, googleClientId, googleClientSecret, googleRefreshToken, publicDomain string) {
+
 	if igAccessToken == "" {
 		panic("IG_ACCESS_TOKEN is missing")
 	}
 	if igAppSecret == "" {
 		panic("IG_APP_SECRET is missing")
 	}
+
 	if googleClientId == "" {
 		panic("GOOGLE_CLIENT_ID is missing")
 	}
@@ -33,7 +44,5 @@ func main() {
 	if publicDomain == "" {
 		panic("PUBLIC_DOMAIN is missing")
 	}
-
-	fmt.Println("All envs variables loaded")
 
 }
