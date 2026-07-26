@@ -2,25 +2,27 @@ package main
 
 import (
 	"fmt"
-	"os"
 
+	"github.com/dnpotter001/ig-image-upload/editor"
 	"github.com/dnpotter001/ig-image-upload/ig"
 )
 
 func main() {
 	fmt.Println("Ig poster starting")
 
-	var igAccessToken string = os.Getenv("IG_ACCESS_TOKEN")
-	var igAppSecret string = os.Getenv("IG_APP_SECRET")
-	var googleClientId string = os.Getenv("GOOGLE_CLIENT_ID")
-	var googleClientSecret string = os.Getenv("GOOGLE_CLIENT_SECRET")
-	var googleRefreshToken string = os.Getenv("GOOGLE_REFRESH_TOKEN")
-	var publicDomain string = os.Getenv("PUBLIC_DOMAIN")
+	// var igAccessToken string = os.Getenv("IG_ACCESS_TOKEN")
+	// var igAppSecret string = os.Getenv("IG_APP_SECRET")
+	// var googleClientId string = os.Getenv("GOOGLE_CLIENT_ID")
+	// var googleClientSecret string = os.Getenv("GOOGLE_CLIENT_SECRET")
+	// var googleRefreshToken string = os.Getenv("GOOGLE_REFRESH_TOKEN")
+	// var publicDomain string = os.Getenv("PUBLIC_DOMAIN")
 
-	checkAllEnvs(igAccessToken, igAppSecret, googleClientId, googleClientSecret, googleRefreshToken, publicDomain)
-	fmt.Println("All envs variables loaded")
+	// checkAllEnvs(igAccessToken, igAppSecret, googleClientId, googleClientSecret, googleRefreshToken, publicDomain)
+	// fmt.Println("All envs variables loaded")
 
 	ig.Hello()
+
+	editor.WhiteBorder("")
 }
 
 func checkAllEnvs(igAccessToken, igAppSecret, googleClientId, googleClientSecret, googleRefreshToken, publicDomain string) {
