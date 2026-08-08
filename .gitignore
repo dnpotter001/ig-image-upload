@@ -11,3 +11,6 @@
 *.dll
 *.so
 *.dylib
+
+# Test output
+src/editor/testOutput

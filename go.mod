@@ -1,3 +1,3 @@
 module github.com/dnpotter001/ig-image-upload
 
-go 1.26.2
+go 1.26.1

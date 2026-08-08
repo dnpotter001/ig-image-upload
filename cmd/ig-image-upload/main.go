@@ -3,8 +3,7 @@ package main
 import (
 	"fmt"
 
-	"github.com/dnpotter001/ig-image-upload/editor"
-	"github.com/dnpotter001/ig-image-upload/ig"
+	"github.com/dnpotter001/ig-image-upload/internal/editor"
 )
 
 func main() {
@@ -20,9 +19,7 @@ func main() {
 	// checkAllEnvs(igAccessToken, igAppSecret, googleClientId, googleClientSecret, googleRefreshToken, publicDomain)
 	// fmt.Println("All envs variables loaded")
 
-	ig.Hello()
-
-	editor.WhiteBorder("")
+	editor.AddWhiteBorder("../tests/000029050020.jpg")
 }
 
 func checkAllEnvs(igAccessToken, igAppSecret, googleClientId, googleClientSecret, googleRefreshToken, publicDomain string) {
