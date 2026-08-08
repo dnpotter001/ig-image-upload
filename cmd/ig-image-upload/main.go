@@ -19,7 +19,7 @@ func main() {
 	// checkAllEnvs(igAccessToken, igAppSecret, googleClientId, googleClientSecret, googleRefreshToken, publicDomain)
 	// fmt.Println("All envs variables loaded")
 
-	editor.AddWhiteBorder("../tests/000029050020.jpg")
+	editor.AddWhiteBorder("../tests/000029050020.jpg", "")
 }
 
 func checkAllEnvs(igAccessToken, igAppSecret, googleClientId, googleClientSecret, googleRefreshToken, publicDomain string) {

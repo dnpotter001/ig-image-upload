@@ -12,3 +12,12 @@ func TestIsImageMagicInstalled(t *testing.T) {
 		t.Errorf("Check if image magick installation")
 	}
 }
+
+func TestAddedBorderRuns(t *testing.T) {
+	_, err := AddWhiteBorder("tests/input.jpg", "tests/output.jpg")
+
+	if err != nil {
+		t.Fatalf("AddWhiteBorder returned an error: %v", err)
+	}
+
+}

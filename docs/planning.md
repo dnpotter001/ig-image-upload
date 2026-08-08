@@ -17,25 +17,29 @@ Drip-feed photos from a Google Drive inbox to an Instagram photography page at p
 ### 1. Instagram publisher
 - [ ] Local Go script that publishes a hardcoded JPEG via Graph API
 - [ ] Extend to carousel publish (2–10 images, 3-step container flow)
-- [ ] Implement long-lived token refresh
 - [ ] Prove publish end-to-end
+- [ ] Static secrets from env vars; paste a fresh 60-day IG token by hand when it expires (no auto-refresh)
 
 ### 2. Local queue + scheduler
 - [ ] Directory structure: `inbox/`, `posted/`, `failed/` (loose file = single post, subfolder = carousel)
 - [ ] Atomic file moves for state transitions
-- [ ] SQLite for post history and tokens
+- [ ] File-based state (last-post timestamp + `posted/` dir) for the prime-time window check
 - [ ] Ticker-based scheduler for prime-time windows (`Pacific/Auckland`, DST-aware)
 - [ ] Run locally, drop files into `inbox/`, verify posting at correct times
 
-### 3. Drive integration (polling)
+### 3. Image processing (`internal/editor`)
+- [x] White-border module via ImageMagick: resize to fit 1020px, pad to a 1080×1080 white square (`AddWhiteBorder`, returns error on magick failure)
+- [ ] Wire into the queue pipeline (process on the way from inbox → queue)
+
+### 4. Drive integration (polling) — next step
 - [ ] Google OAuth flow (one-time, store refresh token)
-- [ ] Poller every ~5 min: list Drive inbox, diff against SQLite, enqueue new items
+- [ ] Poller every ~5 min: list Drive inbox, diff against a local seen-files record, enqueue new items
 - [ ] Stability window: only enqueue a folder unchanged for ≥5 min; single files enqueue immediately
 - [ ] Carousel ordering: numeric filename prefix ascending, else Drive `createdTime`
-- [ ] Download + process (resize 1080px, sRGB, EXIF strip, JPEG q85), move to queue
+- [ ] Download new items, run through image processing, move to queue
 - [ ] Archive originals to a Drive "archive" folder
 
-### 4. Deploy
+### 5. Deploy
 - [ ] Create VM + Volume in Hetzner console, point DNS at the IP
 - [ ] cloud-init first-boot: user, packages, ufw, volume mount at `/var/lib/igposter`
 - [ ] `deploy/bootstrap.sh` for anything cloud-init can't express (idempotent)

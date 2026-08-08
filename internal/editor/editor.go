@@ -8,26 +8,23 @@ import (
 const outerHeightAndWidth int = 1080
 const innerHeightAndWidth int = 1020
 
-func AddWhiteBorder(path string) string {
-	out := "../tests/new.jpg"
-
+func AddWhiteBorder(imagePath string, outputPath string) (string, error) {
 	innerDimension := fmt.Sprintf("%dx%d", innerHeightAndWidth, innerHeightAndWidth)
 	outerDimension := fmt.Sprintf("%dx%d", outerHeightAndWidth, outerHeightAndWidth)
 
 	result, err := exec.Command(
 		"magick",
-		path,
+		imagePath,
 		"-resize", innerDimension, // scale to fit, keeping aspect ratio
 		"-background", "white",
 		"-gravity", "center", // center the image on the canvas
 		"-extent", outerDimension, // pad out to a white square
-		out,
+		outputPath,
 	).CombinedOutput()
 
 	if err != nil {
-		fmt.Println(err)
-		fmt.Println(string(result))
+		return "", fmt.Errorf("magick failed: %w: %s", err, result)
 	}
 
-	return out
+	return outputPath, nil
 }
