@@ -1,7 +1,7 @@
 info:
-  name: Get all files
+  name: Get all files in folder
   type: http
-  seq: 1
+  seq: 4
 
 http:
   method: GET

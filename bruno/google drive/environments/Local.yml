@@ -1,0 +1,16 @@
+name: Local
+variables:
+  - name: client_email
+    value: igposter@ig-image-upload.iam.gserviceaccount.com
+    description: client_email field from the service account JSON key
+  - name: scope
+    value: https://www.googleapis.com/auth/drive.readonly
+    description: Space-separated OAuth scopes to request
+  - secret: true
+    name: private_key
+    description: |-
+      private_key field from the service account JSON key, pasted as-is
+      (with literal \n sequences, not real line breaks)
+  - secret: true
+    name: access_token
+    description: Set automatically by Token's post-response script

@@ -4,12 +4,46 @@ info:
   seq: 3
 
 http:
-  method: GET
+  method: POST
   url: https://oauth2.googleapis.com/token
-  auth: inherit
+  body:
+    type: form-urlencoded
+    data:
+      - name: grant_type
+        value: urn:ietf:params:oauth:grant-type:jwt-bearer
+      - name: assertion
+        value: "{{assertion}}"
+
+runtime:
+  scripts:
+    - type: before-request
+      code: |-
+        // Service-account JWT bearer flow: https://developers.google.com/identity/protocols/oauth2/service-account
+        const jwt = require('jsonwebtoken');
+
+        const clientEmail = bru.getEnvVar('client_email');
+        const privateKey = bru.getEnvVar('private_key').replace(/\\n/g, '\n');
+        const scope = bru.getEnvVar('scope');
+        const tokenUrl = 'https://oauth2.googleapis.com/token';
+        const nowInSeconds = Math.floor(Date.now() / 1000);
+
+        const claims = {
+          iss: clientEmail, // service account email issues the token
+          scope: scope,
+          aud: tokenUrl,     // must match the endpoint we're posting to
+          iat: nowInSeconds,
+          exp: nowInSeconds + 3600 // Google caps this at 1 hour
+        };
+
+        const assertion = jwt.sign(claims, privateKey, { algorithm: 'RS256' });
+
+        bru.setVar('assertion', assertion);
+    - type: after-response
+      code: bru.setEnvVar('access_token', res.body.access_token);
 
 settings:
   encodeUrl: true
   timeout: 0
   followRedirects: true
   maxRedirects: 5
+  forwardAuthorizationHeader: true
