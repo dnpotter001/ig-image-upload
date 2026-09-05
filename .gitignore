@@ -1,6 +1,17 @@
 # envs
 .envrc
 .env
+*.env
+
+# secrets / credentials — never commit
+tokens.json
+*-key.json
+*-credentials.json
+service-account*.json
+credentials*.json
+*.pem
+*.key
+secrets/
 
 # macOS
 .DS_Store

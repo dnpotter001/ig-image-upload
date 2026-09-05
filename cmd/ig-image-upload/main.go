@@ -12,6 +12,7 @@ func main() {
 	// var igAccessToken string = os.Getenv("IG_ACCESS_TOKEN")
 	// var igAppSecret string = os.Getenv("IG_APP_SECRET")
 	// var googleClientId string = os.Getenv("GOOGLE_CLIENT_ID")
+	// var googleClientId string = os.Getenv("GOOGLE_CLIENT_ID")
 	// var googleClientSecret string = os.Getenv("GOOGLE_CLIENT_SECRET")
 	// var googleRefreshToken string = os.Getenv("GOOGLE_REFRESH_TOKEN")
 	// var publicDomain string = os.Getenv("PUBLIC_DOMAIN")
