@@ -11,9 +11,9 @@ func main() {
 
 	// var igAccessToken string = os.Getenv("IG_ACCESS_TOKEN")
 	// var igAppSecret string = os.Getenv("IG_APP_SECRET")
-	// var googleClientId string = os.Getenv("GOOGLE_CLIENT_ID")
-	// var googleClientId string = os.Getenv("GOOGLE_CLIENT_ID")
-	// var googleClientSecret string = os.Getenv("GOOGLE_CLIENT_SECRET")
+	// var googleClientId string = os.Getenv("GOOGLE_CLIENT_EMAIL")
+	// var googleClientId string = os.Getenv("GOOGLE_CLIENT_EMAIL")
+	// var googleClientSecret string = os.Getenv("GOOGLE_PRIVATE_KEY")
 	// var googleRefreshToken string = os.Getenv("GOOGLE_REFRESH_TOKEN")
 	// var publicDomain string = os.Getenv("PUBLIC_DOMAIN")
 
@@ -33,10 +33,10 @@ func checkAllEnvs(igAccessToken, igAppSecret, googleClientId, googleClientSecret
 	}
 
 	if googleClientId == "" {
-		panic("GOOGLE_CLIENT_ID is missing")
+		panic("GOOGLE_CLIENT_EMAIL is missing")
 	}
 	if googleClientSecret == "" {
-		panic("GOOGLE_CLIENT_SECRET is missing")
+		panic("GOOGLE_PRIVATE_KEY is missing")
 	}
 	if googleRefreshToken == "" {
 		panic("GOOGLE_REFRESH_TOKEN is missing")
