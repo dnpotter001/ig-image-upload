@@ -4,10 +4,10 @@ Drip-feed photos from a Google Drive inbox to an Instagram photography page at p
 
 ## Setup / Prerequisites
 
-- [ ] Switch Instagram to a Business or Creator account
-- [ ] Create a Meta Developer app with content publishing (decide: "Instagram API with Instagram Login" vs Page-linked Graph API — pick before app setup)
-- [ ] Add own IG account as tester/admin (app stays in Development Mode, no App Review)
-- [ ] Get a long-lived IG access token
+- [x] Switch Instagram to a Business or Creator account
+- [x] Create a Meta Developer app with content publishing (decide: "Instagram API with Instagram Login" vs Page-linked Graph API — pick before app setup)
+- [x] Add own IG account as tester/admin (app stays in Development Mode, no App Review)
+- [x] Get a long-lived IG access token
 - [ ] Create a Google Cloud project with Drive API enabled + OAuth credentials
 - [ ] Register a domain and point it at the VM
 - [ ] Create a Hetzner Cloud account + API token

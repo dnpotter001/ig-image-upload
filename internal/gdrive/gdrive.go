@@ -3,6 +3,7 @@ package gdrive
 import (
 	"context"
 	"fmt"
+	"image"
 	"os"
 	"strings"
 
@@ -27,6 +28,29 @@ func GetPicturesForUpload() ([]*drive.File, error) {
 	}
 
 	return fileList.Files, nil
+}
+
+func DownloadImage(file *drive.File) (image.Image, error) {
+	service, err := getDriveService()
+	if err != nil {
+		fmt.Println(err.Error())
+		return nil, err
+	}
+
+	download, err := service.Files.Get(file.Id).Download()
+
+	if err != nil {
+		fmt.Println(err)
+		return nil, err
+	}
+
+	image, _, err := image.Decode(download.Body)
+
+	if err != nil {
+		return nil, err
+	}
+
+	return image, nil
 }
 
 func getDriveService() (*drive.Service, error) {
@@ -55,8 +79,4 @@ func getDriveService() (*drive.Service, error) {
 	}
 
 	return driveService, nil
-}
-
-func DownloadImage(fileName string) ([]byte, error) {
-	return nil, nil
 }

@@ -1,0 +1,29 @@
+info:
+  name: Exchange long-lived token
+  type: http
+  seq: 5
+
+http:
+  method: GET
+  url: https://graph.instagram.com/access_token
+  params:
+    - name: grant_type
+      value: ig_exchange_token
+      type: query
+    - name: client_secret
+      value: "{{app_secret}}"
+      type: query
+    - name: access_token
+      value: "{{access_token}}"
+      type: query
+
+runtime:
+  scripts:
+    - type: after-response
+      code: bru.setEnvVar('access_token', res.body.access_token);
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

@@ -24,4 +24,5 @@ secrets/
 *.dylib
 
 # Test output
-src/editor/testOutput
+internal/gdrive/tests
+internal/editor/tests

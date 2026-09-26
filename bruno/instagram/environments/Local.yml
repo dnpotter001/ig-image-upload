@@ -1,0 +1,14 @@
+name: Local
+variables:
+  - name: api_version
+    value: v21.0
+    description: Graph API version segment used in request URLs
+  - name: ig_user_id
+    value: ""
+    description: Your Instagram professional account's IG user ID (from Me's response)
+  - secret: true
+    name: access_token
+    description: Long-lived IG access token from App Dashboard > Instagram > API setup with Instagram business login
+  - secret: true
+    name: app_secret
+    description: IG_APP_SECRET, used only for exchanging/refreshing tokens

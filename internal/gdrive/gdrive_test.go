@@ -1,6 +1,10 @@
 package gdrive
 
-import "testing"
+import (
+	"image/jpeg"
+	"os"
+	"testing"
+)
 
 func TestGetPicturesForUpload(t *testing.T) {
 	files, err := GetPicturesForUpload()
@@ -28,5 +32,26 @@ func TestGetPicturesForUpload(t *testing.T) {
 }
 
 func TestDownloadPicture(t *testing.T) {
+	files, err := GetPicturesForUpload()
+
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	download, err := DownloadImage(files[len(files)-1])
+
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	f, err := os.Create("tests/output.jpg")
+
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	defer f.Close()
+
+	jpeg.Encode(f, download, &jpeg.Options{Quality: 90})
 
 }

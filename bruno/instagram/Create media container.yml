@@ -1,0 +1,30 @@
+info:
+  name: Create media container
+  type: http
+  seq: 2
+
+http:
+  method: POST
+  url: https://graph.instagram.com/{{api_version}}/{{ig_user_id}}/media
+  body:
+    type: json
+    data: |-
+      {
+        "image_url": "https://example.com/path/to/image.jpg",
+        "caption": "Test post from Bruno"
+      }
+  auth:
+    type: bearer
+    token: "{{access_token}}"
+
+runtime:
+  scripts:
+    - type: after-response
+      code: bru.setEnvVar('container_id', res.body.id);
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: true

@@ -1,0 +1,26 @@
+info:
+  name: Refresh long-lived token
+  type: http
+  seq: 6
+
+http:
+  method: GET
+  url: https://graph.instagram.com/refresh_access_token
+  params:
+    - name: grant_type
+      value: ig_refresh_token
+      type: query
+    - name: access_token
+      value: "{{access_token}}"
+      type: query
+
+runtime:
+  scripts:
+    - type: after-response
+      code: bru.setEnvVar('access_token', res.body.access_token);
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
